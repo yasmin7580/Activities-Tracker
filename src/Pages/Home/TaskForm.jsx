@@ -89,12 +89,19 @@ const TaskForm = () => {
                 <div className="max-w-2xl mx-auto">
 
                     <div className="mb-8">
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
+                            <span className="text-xs font-semibold uppercase tracking-[2px] text-cyan-400">
+                                Daily Tracker
+                            </span>
+                        </div>
 
-                        <h1 className="text-3xl font-bold text-white tracking-tight">
-                            Add New Activity <span > +</span>
+                        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+                            Add New Activity <span className="text-cyan-400">+</span>
                         </h1>
-                        <p className="text-slate-400 mt-2 text-sm">
-                            Keep track of how you spend your day.
+
+                        <p className="text-sm sm:text-base text-slate-400 mt-2 leading-relaxed">
+                            Turn your daily moments into meaningful progress.
                         </p>
                     </div>
 

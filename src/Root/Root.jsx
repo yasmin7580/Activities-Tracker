@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 
 const Root = () => {
     return (
-        <div>
+        <div className='min-h-dvh'>
             <Toaster></Toaster>
             <BottomNavigationBar></BottomNavigationBar>
             <div className='pb-16 bg-[#0f1629]'>

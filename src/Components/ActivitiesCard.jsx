@@ -2,12 +2,19 @@ import { format } from 'date-fns';
 import React from 'react';
 import getDateDiff from '../lib/getDateDiff';
 import { ArrowRight, Calendar, Clock4, Timer } from 'lucide-react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const ActivitiesCard = ({ task }) => {
-    const isMultipleDate = new Date(task.startTime).toDateString() !== new Date(task.endTime).toDateString()
+    const isReady = !!task?._id
+    const isMultipleDate = isReady ? new Date(task.startTime).toDateString() !== new Date(task.endTime).toDateString() : false
     console.log(isMultipleDate);
+    // console.log("i am in the component")
     return (
-        <div>
+        <SkeletonTheme
+            baseColor="#0f172a"
+            highlightColor="#1e293b"
+        >
             <div
 
                 className="bg-[#182238] border border-slate-700/60 rounded-xl p-4 hover:border-cyan-500/40 transition duration-200 relative overflow-hidden"
@@ -16,10 +23,22 @@ const ActivitiesCard = ({ task }) => {
 
                 </div>
                 {/* Date */}
+
+
                 <div className="flex items-center gap-2 text-sm text-white font-semibold">
-                    <span className="text-cyan-400 p-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg"><Calendar size={16} /></span>
-                    <span className='text-cyan-400  px-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg'>{format(new Date(task.endTime), "eeee")}</span>
-                    <span>{format(new Date(task.startTime), "PP")}</span>
+                    {isReady ? <span className="text-cyan-400 p-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg">
+                        <Calendar size={16} /></span> : <Skeleton height={30} width={30} borderRadius={12}></Skeleton>
+                    }
+                    {
+                        isReady ?
+
+                            <span className='text-cyan-400  px-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg'>{format(new Date(task.endTime), "eeee")}</span>
+                            : <Skeleton height={22} width={65} borderRadius={12}></Skeleton>
+                    }
+                    {
+                        isReady ? <span>{format(new Date(task.startTime), "PP")}</span> : <Skeleton height={22} width={81} borderRadius={12}></Skeleton>
+
+                    }
                     {
                         isMultipleDate &&
                         <>
@@ -28,25 +47,35 @@ const ActivitiesCard = ({ task }) => {
                         </>
                     }
                 </div>
+
                 {/* Top section */}
                 <div className="flex  justify-between items-center  mt-3 gap-3">
                     {/* Time */}
-                    <div className="flex items-center  gap-2 px-3 border border-slate-700/60 py-1.5 rounded-xl bg-[#0f1629]">
-                        <Clock4 className='text-cyan-400 ' size={14} />
-                        <span className=" text-cyan-400  text-xs font-semibold">
-                            {format(new Date(task.startTime), "hh:mm a ")}
-                        </span>
+                    {
+                        isReady ?
+                            <div className="flex items-center  gap-2 px-3 border border-slate-700/60 py-1.5 rounded-xl bg-[#0f1629]">
+                                <Clock4 className='text-cyan-400 ' size={14} />
+                                <span className=" text-cyan-400  text-xs font-semibold">
+                                    {format(new Date(task.startTime), "hh:mm a ")}
+                                </span>
 
-                        <span className="text-slate-500 text-xs"><ArrowRight size={14}></ArrowRight></span>
+                                <span className="text-slate-500 text-xs"><ArrowRight size={14}></ArrowRight></span>
 
-                        <span className=" text-purple-400 text-xs font-semibold">
-                            {format(new Date(task.endTime), "hh:mm a ")}
-                        </span>
-                    </div>
+                                <span className=" text-purple-400 text-xs font-semibold">
+                                    {format(new Date(task.endTime), "hh:mm a ")}
+                                </span>
+                            </div>
+                            :
+                            <Skeleton height={25} width={176} borderRadius={12}></Skeleton>
+                    }
 
-                    <p className=' text-xs rounded-xl inline-flex items-center gap-1.5 bg-amber-400/10 border border-amber-400/25 text-amber-300 px-2.5 py-1.5'>
-                        <Timer className='text-amber-300 ' size={14} />
-                        {getDateDiff(task.startTime, task.endTime)}</p>
+                    {
+                        isReady ?
+                            <p className=' text-xs rounded-xl inline-flex items-center gap-1.5 bg-amber-400/10 border border-amber-400/25 text-amber-300 px-2.5 py-1.5'>
+                                <Timer className='text-amber-300 ' size={14} />
+                                {getDateDiff(task.startTime, task.endTime)}</p>
+                            : <Skeleton height={30} width={65} borderRadius={12}></Skeleton>
+                    }
 
                 </div>
 
@@ -55,16 +84,24 @@ const ActivitiesCard = ({ task }) => {
 
                 {/* Description */}
 
-
+                {
+                    isReady ?
+                        <p className="text-sm text-slate-300 leading-relaxed gap-4 bg-[#0f1629]/80 block rounded-xl border border-slate-800/80  p-3">
+                            {task.description}
+                        </p>
+                        :
+                        <Skeleton height={48} width={'full'} borderRadius={12}></Skeleton>
+                }
+                {/* 
                 <p className="text-sm text-slate-300 leading-relaxed gap-4 bg-[#0f1629]/80 block rounded-xl border border-slate-800/80  p-3">
-                    {task.description}
-                </p>
+                    {task?.description || <Skeleton></Skeleton>}
+                </p> */}
 
 
 
 
             </div>
-        </div>
+        </SkeletonTheme>
     );
 };
 

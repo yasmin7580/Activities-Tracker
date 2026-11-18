@@ -9,14 +9,14 @@ const getDateDiff = (startTime, endTime) => {
     let day = 0
     let modulus = difference
     console.log(difference, dayM)
-    if (difference > dayM) {
+    if (difference >= dayM) {
         day = Math.floor(difference / dayM)
         modulus = difference % dayM
     }
     // * we have got hour
 
     let hour = 0
-    if (modulus > 60) {
+    if (modulus >= 60) {
         hour = Math.floor(modulus / 60)
         modulus = modulus % 60
     }
