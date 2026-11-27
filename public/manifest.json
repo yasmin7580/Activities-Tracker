@@ -1,8 +1,11 @@
 {
-    "name" : "Activities Tracker",
-    "short_name" : "Activities" ,
-    "description" : "Track your daily activities",
-    "icon":{
-        "200" : "./logo.jpg"
+    "manifest_version": 3,
+    "name": "Activities Tracker",
+    "short_name": "Activities",
+    "description": "Track your daily activities",
+    "orientation": "portrait-primary",
+    "display": "standalone",
+    "icon": {
+        "200": "./logo.jpg"
     }
 }
