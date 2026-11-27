@@ -1,0 +1,8 @@
+{
+    "name" : "Activities Tracker",
+    "short_name" : "Activities" ,
+    "description" : "Track your daily activities",
+    "icon":{
+        "200" : "./logo.jpg"
+    }
+}
