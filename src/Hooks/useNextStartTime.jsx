@@ -1,13 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '../Context/AuthContext';
 
 const useNextStartTime = () => {
+    const { user } = useContext(AuthContext)
     const { data: nextStartTime, refetch } = useQuery({
         queryKey: ["nextStartTime"],
         queryFn: async () => {
-            const { data: result } = await axios.get("https://activities-tracker-backend.vercel.app/next-start-time")
+            const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/next-start-time?email=${user.email}`)
 
             return format(new Date(result), "HH:mm")
 
