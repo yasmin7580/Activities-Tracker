@@ -28,7 +28,7 @@ const SignUp = () => {
                     uid: user.uid,
                 }
 
-                const { data } = await axios.post('http://localhost:3000/user', userInfo)
+                const { data } = await axios.post('https://activities-tracker-backend.vercel.app/user', userInfo)
                 if (data.insertedId) {
                     toast.dismiss(toastId)
                     toast.success("SignUp successful")

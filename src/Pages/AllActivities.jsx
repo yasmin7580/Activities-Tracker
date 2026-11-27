@@ -17,7 +17,7 @@ const AllActivities = () => {
     const { data: activities = [...Array(10)], refetch } = useQuery({
         queryKey: ["activities", search, from, to, email,], // queryKey is the name of the query
         queryFn: async () => {
-            const { data: result } = await axios.get(`http://localhost:3000/activities?search=${search}&from=${from}&to=${to}&email=${email}`)
+            const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/activities?search=${search}&from=${from}&to=${to}&email=${email}`)
             return result
 
         }

@@ -11,7 +11,7 @@ const TodayTask = () => {
     const { data: todaysTask , refetch } = useQuery({
         queryKey: ["todaysTask", email],
         queryFn: async () => {
-            const { data: result } = await axios.get(`http://localhost:3000/activities?date=today&email=${email}`)
+            const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/activities?date=today&email=${email}`)
             console.log(todaysTask);
             return result
         }
