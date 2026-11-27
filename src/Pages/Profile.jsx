@@ -68,7 +68,7 @@ const Profile = () => {
                         </div>
 
                         {/* Profile Card */}
-                        <div className="rounded-xl border border-slate-700/60 bg-[#182238] p-4 shadow-lg sm:p-5">
+                        <div className="">
 
                             {/* Profile Header */}
                             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
