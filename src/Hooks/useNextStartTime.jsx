@@ -9,7 +9,7 @@ const useNextStartTime = () => {
     const { data: nextStartTime, refetch } = useQuery({
         queryKey: ["nextStartTime"],
         queryFn: async () => {
-            const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/next-start-time?email=${user.email}`)
+            const { data: result } = await axios.get(`http://localhost:3000/next-start-time?email=${user.email}`)
             console.log(result)
 
             return format(new Date(result), "HH:mm")

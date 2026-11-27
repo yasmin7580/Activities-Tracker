@@ -60,7 +60,7 @@ const TaskForm = () => {
         console.log(formData)
         const toastId = toast.loading("Activity Adding")
         try {
-            await axios.post("https://activities-tracker-backend.vercel.app/activities", formData)
+            await axios.post("http://localhost:3000/activities", formData)
             toast.dismiss(toastId)
             form.reset()
             refetch()

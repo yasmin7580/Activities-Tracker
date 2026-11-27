@@ -8,14 +8,16 @@ const TodayTask = () => {
     const { user } = useContext(AuthContext)
     const email = user.email
     console.log(email);
+    const today = new Date().toISOString()
     const { data: todaysTask , refetch } = useQuery({
         queryKey: ["todaysTask", email],
         queryFn: async () => {
-            const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/activities?date=today&email=${email}`)
+            const { data: result } = await axios.get(`http://localhost:3000/activities?from=${today}&to=${today}&email=${email}`)
             console.log(todaysTask);
             return result
         }
     })
+    console.log(today)
 
 
     return (
