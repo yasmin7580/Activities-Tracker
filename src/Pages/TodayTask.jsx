@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import ActivitiesCard from '../Components/ActivitiesCard';
+import { useContext } from 'react';
+import AuthContext from '../Context/AuthContext';
 
 const TodayTask = () => {
-
-    const { data: todaysTask } = useQuery({
-        queryKey: ["todaysTask"],
+    const { user } = useContext(AuthContext)
+    const email = user.email
+    console.log(email);
+    const { data: todaysTask , refetch } = useQuery({
+        queryKey: ["todaysTask", email],
         queryFn: async () => {
-            const { data: result } = await axios.get(`http://localhost:3000/activities?date=today`)
+            const { data: result } = await axios.get(`http://localhost:3000/activities?date=today&email=${email}`)
             console.log(todaysTask);
             return result
         }
@@ -32,6 +36,7 @@ const TodayTask = () => {
                         <ActivitiesCard
                             key={task._id}
                             task={task}
+                            refetch={refetch}
                         >
                         </ActivitiesCard>
                     )

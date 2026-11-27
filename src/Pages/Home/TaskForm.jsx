@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { format, setHours } from 'date-fns';
-import { Calendar, CalendarPlus, Clock, FileText } from 'lucide-react';
-import React from 'react';
+import { Calendar, CalendarPlus, Clock, FileText, LogOut } from 'lucide-react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import useNextStartTime from '../../Hooks/useNextStartTime';
 import TodayTask from '../TodayTask';
 import { useQueryClient } from '@tanstack/react-query';
+import AuthContext from '../../Context/AuthContext';
 
 const TaskForm = () => {
+    const { user } = useContext(AuthContext)
     const { nextStartTime, refetch } = useNextStartTime()
     const queryClient = useQueryClient()
 
@@ -21,6 +23,7 @@ const TaskForm = () => {
 
 
         console.log(formData.endTime);
+        formData.email = user.email
         formData.startDate = new Date(formData.startDate)
         formData.endDate = new Date(formData.endDate)
         const [hours, minute] = formData.startTime.split(":")
@@ -49,12 +52,7 @@ const TaskForm = () => {
             }
         }
 
-
-
-
         // console.log({ startTimeHour, endTimeHour, startTimeMin, endTimeMin });
-
-
 
         console.log(formData)
         delete formData.startDate
@@ -78,6 +76,11 @@ const TaskForm = () => {
 
     }
 
+
+
+  
+
+
     console.log(new Date())
     const today = format(new Date(), "yyyy-MM-dd")
 
@@ -89,12 +92,19 @@ const TaskForm = () => {
                 <div className="max-w-2xl mx-auto">
 
                     <div className="mb-8">
-                        <div className="flex items-center gap-2 mb-2">
-                            <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
-                            <span className="text-xs font-semibold uppercase tracking-[2px] text-cyan-400">
-                                Daily Tracker
-                            </span>
+                        <div className='flex justify-between'>
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
+                                <span className="text-xs font-semibold uppercase tracking-[2px] text-cyan-400">
+                                    Daily Tracker
+                                </span>
+
+                            </div>
+                           
+
                         </div>
+
+
 
                         <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
                             Add New Activity <span className="text-cyan-400">+</span>
