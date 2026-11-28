@@ -34,7 +34,7 @@ const TodayTask = () => {
 
             <div className="max-w-4xl mx-auto space-y-3">
                 {todaysTask?.result?.length > 0 ? (
-                    todaysTask?.map((task) =>
+                    todaysTask?.result?.map((task) =>
                         <ActivitiesCard
                             key={task._id}
                             task={task}
