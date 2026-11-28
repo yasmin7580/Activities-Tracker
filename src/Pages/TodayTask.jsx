@@ -9,7 +9,7 @@ const TodayTask = () => {
     const email = user.email
     console.log(email);
     const today = new Date().toISOString()
-    const { data: todaysTask , refetch } = useQuery({
+    const { data: todaysTask, refetch } = useQuery({
         queryKey: ["todaysTask", email],
         queryFn: async () => {
             const { data: result } = await axios.get(`https://activities-tracker-backend.vercel.app/activities?from=${today}&to=${today}&email=${email}`)
@@ -33,7 +33,7 @@ const TodayTask = () => {
             </div>
 
             <div className="max-w-4xl mx-auto space-y-3">
-                {todaysTask?.length > 0 ? (
+                {todaysTask?.result?.length > 0 ? (
                     todaysTask?.map((task) =>
                         <ActivitiesCard
                             key={task._id}
