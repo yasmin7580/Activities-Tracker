@@ -31,7 +31,7 @@ const AllActivities = () => {
 
         }
     })
-    const totalActivitiesCounts = activities?.totalActivitiesCounts
+    const totalActivitiesCounts = activities?.totalActivitiesCounts || 0
     const totalPageCount = Math.ceil(totalActivitiesCounts / limit)
     console.log(typeof totalPageCount);
 
