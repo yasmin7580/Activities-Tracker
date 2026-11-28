@@ -1,6 +1,6 @@
 import { Lottie } from 'lottie-react';
 import React from 'react';
-import animate from "../../../public/authenticationLoading.json"
+import animate from "../../assets/authenticationLoading.json"
 
 const AuthenticationLoading = () => {
     return (

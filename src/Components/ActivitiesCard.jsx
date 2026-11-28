@@ -24,7 +24,7 @@ const ActivitiesCard = ({ task, refetch }) => {
             if (result.isConfirmed) {
                 const toastId = toast.loading("Deleting")
                 try {
-                    const { data } = await axios.delete(`http://localhost:3000/activity/${task?._id}`)
+                    const { data } = await axios.delete(`https://activities-tracker-backend.vercel.app/activity/${task?._id}`)
                     if (data.deletedCount !== 1) {
                         throw new Error("Failed to delete")
                     }
@@ -84,7 +84,12 @@ const ActivitiesCard = ({ task, refetch }) => {
                         </>
                     }
                 </div>
-                <button onClick={handleDelete}><Trash size={20} className='text-red-800' /></button>
+                {
+                    isReady ? <button onClick={handleDelete}><Trash size={20} className='text-red-800' /></button> :
+                        <Skeleton height={26} width={26} borderRadius={12}></Skeleton>
+
+                }
+
 
             </div>
 
