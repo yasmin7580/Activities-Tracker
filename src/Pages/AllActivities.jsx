@@ -72,19 +72,23 @@ const AllActivities = () => {
                     }
                 </div>
                 <div className='grid grid-cols-2 gap-1 mb-2'>
-                    <label className='text-sm text-gray-400 block'>Add Start-Date</label>
-                    <input className='input bg-[#182238] outline-none' type="date"
-                        placeholder='Add start-date'
-                        onChange={(e) => setFrom(e.target.value)}
-                        value={from}
-                    />
-                    <label className='text-sm text-gray-400 block'>Add End-Date</label>
+                    <>
+                        <label className='text-sm text-gray-400 block'>Add Start-Date</label>
+                        <input className='input bg-[#182238] outline-none' type="date"
+                            placeholder='Add start-date'
+                            onChange={(e) => setFrom(e.target.value)}
+                            value={from}
+                        />
+                    </>
+                    <>
+                        <label className='text-sm text-gray-400 block'>Add End-Date</label>
 
-                    <input className='input bg-[#182238] outline-none' type="date"
-                        placeholder='Add end-date'
-                        onChange={(e) => setTo(e.target.value)}
-                        value={to}
-                    />
+                        <input className='input bg-[#182238] outline-none' type="date"
+                            placeholder='Add end-date'
+                            onChange={(e) => setTo(e.target.value)}
+                            value={to}
+                        />
+                    </>
                 </div>
 
             </div>
