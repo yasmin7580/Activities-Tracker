@@ -86,7 +86,7 @@ const AllActivities = () => {
 
             </div>
             {
-                activities?.result ?
+                activities?.result?.length > 0 ?
                     <>
 
 
